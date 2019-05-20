@@ -29,6 +29,7 @@ public class HGUCoursePatternAnalyzer {
 			System.out.println(e.getMessage());
 			System.exit(0);
 		}
+		// hi
 		
 		String dataPath = args[0]; // csv file to be analyzed
 		String resultPath = args[1]; // the file path where the results are saved.
