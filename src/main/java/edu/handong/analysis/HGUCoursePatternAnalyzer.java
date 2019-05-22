@@ -3,6 +3,7 @@ package edu.handong.analysis;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 import edu.handong.analysis.datamodel.Course;
@@ -12,7 +13,7 @@ import edu.handong.analysise.utils.Utils;
 
 public class HGUCoursePatternAnalyzer {
 
-	private HashMap<String,Student> students;
+	private HashMap<String, Student> students;
 	
 	/**
 	 * This method runs our analysis logic to save the number courses taken by each student per semester in a result file.
@@ -54,9 +55,25 @@ public class HGUCoursePatternAnalyzer {
 	 */
 	private HashMap<String,Student> loadStudentCourseRecords(ArrayList<String> lines) {
 		
-		// TODO: Implement this method
+		HashMap<String, Student> hm = new HashMap<String, Student>();
+
+		int count = 0;	
+
+		for(int i = 0; i < lines.size(); i++) {
+			
+			String[] studentID = lines.get(i).split(",");
+			
+			if(Integer.parseInt(studentID[0].trim()) == count + 1) {
+				
+				Student student = new Student(studentID[0]);
+				hm.put(studentID[0], student);
+				count++;
+			}
+			
+			hm.get(studentID[0]).addCourse(new Course(lines.get(i)));
+		}
 		
-		return null; // do not forget to return a proper variable.
+		return hm; // do not forget to return a proper variable.
 	}
 
 	/**
@@ -74,8 +91,20 @@ public class HGUCoursePatternAnalyzer {
 	 */
 	private ArrayList<String> countNumberOfCoursesTakenInEachSemester(Map<String, Student> sortedStudents) {
 		
-		// TODO: Implement this method
+		ArrayList<String> al = new ArrayList<String>();
+
+		for (String key : sortedStudents.keySet()) {
+			
+			int len = sortedStudents.get(key).getSemestersByYearAndSemester().size();
+			
+			for(int i = 1; i <= len; i++) {
+				
+				String text = "";
+				text = key + "," + len + "," + i + "," + sortedStudents.get(key).getNumCourseInNthSemester(i);
+				al.add(text);
+			}
+		}
 		
-		return null; // do not forget to return a proper variable.
+		return al; // do not forget to return a proper variable.
 	}
 }
