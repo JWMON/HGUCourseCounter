@@ -1,4 +1,4 @@
-package edu.handong.analysise.utils;
+package edu.handong.analysis.utils;
 
 @SuppressWarnings("serial")
 public class NotEnoughArgumentException extends Exception {

@@ -1,4 +1,4 @@
-package edu.handong.analysise.utils;
+package edu.handong.analysis.utils;
 
 import java.io.BufferedReader;
 import java.io.File;
