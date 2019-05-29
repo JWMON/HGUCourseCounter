@@ -9,6 +9,14 @@ public class Student {
 	private ArrayList<Course> coursesTaken;
 	private HashMap<String, Integer> semestersByYearAndSemester;
 	
+	public String getStudentID() {
+		return studentID;
+	}
+
+	public ArrayList<Course> getCoursesTaken() {
+		return coursesTaken;
+	}
+
 	public Student(String studentID) {
 		
 		coursesTaken = new ArrayList<Course>();
@@ -32,6 +40,7 @@ public class Student {
 		semestersByYearAndSemester.put(yearTaken + "-" + semesterTaken, semester);
 		
 		for(int i = 0; i < coursesTaken.size(); i++) {
+			
 			
 			if(yearTaken == coursesTaken.get(i).getYearTaken() && semesterTaken != coursesTaken.get(i).getSemesterCourseTaken()) {
 				
